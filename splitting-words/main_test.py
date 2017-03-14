@@ -5,11 +5,13 @@ class TestWordSplitting(unittest.TestCase):
 
     def test_splitting_words(self):
         tests = [
-            ("helloworld", ["hello", "world", "what", "is", "up"], True),
-            ("helloWorld", ["hello", "world", "what", "is", "up"], False),
-            ("helloworld", ["helloworld", "what", "is", "up"], False),
-            ("helloworldis", ["hello", "world", "what", "is", "up"], True),
-            ("helloworldiswhat", ["hello", "world", "what", "is", "up"], True)
+            ["helloworld", ["hello", "world", "what", "is", "up"], True],
+            ["helloWorld", ["hello", "world", "what", "is", "up"], False],
+            ["helloworld", ["helloworld", "what", "is", "up"], False],
+            ["helloworldis", ["hello", "world", "what", "is", "up"], True],
+            ["helloworldiswhat", ["hello", "world", "what", "is", "up"], True],
+            ["", ["hello", "world", "what", "is", "up"], False],
+            ["helloworld", [], False]
         ]
 
         for x in tests:
