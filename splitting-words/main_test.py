@@ -11,7 +11,8 @@ class TestWordSplitting(unittest.TestCase):
             ["helloworldis", ["hello", "world", "what", "is", "up"], True],
             ["helloworldiswhat", ["hello", "world", "what", "is", "up"], True],
             ["", ["hello", "world", "what", "is", "up"], False],
-            ["helloworld", [], False]
+            ["helloworld", [], False],
+            ["", [], False]
         ]
 
         for x in tests:
