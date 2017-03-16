@@ -6,7 +6,8 @@ class TestLargestIntSubstrSum(unittest.TestCase):
   def test_sums(self):
 
     tests = [
-        [[10, 20, -12, 75, 10], 85],
+        [[10, 20, -12, 75, 10], 103],
+        [[1, 4, -12, 75, 10], 85],
         [[10, -10, 10, -10], 10],
         [[-10, -10, -1], -1],
         [[],  0]
