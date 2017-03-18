@@ -1,10 +1,20 @@
-def largest_int_substr_sum(array_ints):
-  if array_ints == []:
+"""This function assumes that at least one value is larger than 0"""
+def best_time_to_buy_sell(prices):
+  if prices == []:
     return 0
-  substr_sums = []
-  for i in range(len(array_ints)):
-    substr_sums.append(array_ints[i])
-    for j in array_ints[i + 1:]:
-      substr_sums.append(substr_sums[-1] + j)
+  print prices
+  buy_price = (prices[0])
+  profit = prices[1] - prices[0]
+  sell_price = prices[1]
+  print buy_price, profit, sell_price
 
-  return max(substr_sums)
+  for price in prices:
+    if (price - buy_price) > profit:
+      print "price - buy_price > profit", price - buy_price
+      sell_price = price
+      profit = price - buy_price
+    if price < buy_price:
+      print "price is less than buy price", price, buy_price
+      buy_price = price
+
+  return [buy_price, sell_price]
