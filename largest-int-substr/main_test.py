@@ -1,7 +1,7 @@
 import unittest
 import main
 
-class TestLargestIntSubstrSum(unittest.TestCase):
+class TestBuySellStocks(unittest.TestCase):
 
   def test_sums(self):
 
@@ -13,7 +13,7 @@ class TestLargestIntSubstrSum(unittest.TestCase):
       ]
 
     for test in tests:
-      self.assertEqual(main.best_time_to_buy_sell(test[0]), test[1])
+      self.assertEqual(main.buy_sell_stocks(test[0]), test[1])
 
 if __name__ == "__main__":
   unittest.main()

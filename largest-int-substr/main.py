@@ -1,5 +1,5 @@
 """This function assumes that at least one value is larger than 0"""
-def best_time_to_buy_sell(prices):
+def buy_sell_stocks(prices):
   if prices == []:
     return 0
   buy_price = prices[0]
