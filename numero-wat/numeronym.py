@@ -8,55 +8,40 @@ def listify_word_file(filename):
 
 def parse_numeronym(numeronym):
   parsed_numeronym = []
-  current_pos = 0
-  while alphabet.get(numeronym[current_pos]) == 1:
-    parsed_numeronym.append(numeronym[current_pos])
-    current_pos += 1
-  parsed_numeronym.append(int(numeronym[current_pos]))
-  current_pos += 1
-  parsed_numeronym.append(numeronym[current_pos:])
-  return parsed_numeronym
+  offset = 0
 
-'''
-Return length of numeronym's underlying word.
-
-Args:
-  numeronym: numeronym to get length
-Return:
-  int: numeronym length
-'''
-def get_numeronym_length(numeronym):
-  numeronym_len = 0
-  for i in numeronym:
-    if alphabet.get(i) == 1:
-      numeronym_len += 1
+  for i in range(len(numeronym)):
+    if alphabet.get(numeronym[i]):
+      parsed_numeronym.append((numeronym[i], (i + offset)))
     else:
       try:
-        number = int(i)
-        numeronym_len += number
-      except ValueError:
-        numeronym_len += 1
+        offset = int(numeronym[i])
+      except:
         continue
-  return numeronym_len
 
-def gen_numeronyms(word, dropped_letter):
-  dropped_letters = int(dropped_letter)
-  #if len(word) <= dropped_letters:
-  #  raise ValueError("Word is too short for number of dropped letters.")
-  remaining_letters = len(word) - dropped_letters
-  numeronyms = []
-  for i in range(remaining_letters):
-    numeronym = []
-    numeronym.append(word[:i + 1])
-    numeronym.append(int(dropped_letters))
-    if (dropped_letters + 1) == len(word):
-      numeronym.append("")
+  print "parse_numeronym:", parsed_numeronym
+  return parsed_numeronym
+
+def get_numeronym_length(numeronym):
+  length = 0
+  for letter in numeronym:
+    if alphabet.get(letter) == 1:
+      length += 1
     else:
-      numeronym.append(word[i + dropped_letters])
-    numeronyms.append(numeronym)
-  return numeronyms
+      if type(letter) == int:
+        length += letter
+  return length
 
 
+def compare_word_to_numeronym(word, numeronym):
+  if type(numeronym[0]) != tuple:
+    numeronym = parse_numeronym(numeronym)
+  for letter_pos in numeronym:
+    if letter_pos[0] == word[letter_pos[1]]:
+      continue
+    else:
+      return False
+  return True
 
 '''
 Determine if, given a dictionary of words, the numeronym is valid for that group
@@ -69,18 +54,11 @@ Return:
   boolean:
 '''
 def is_valid_numeronym(numeronym, word_list):
-  numeronym = parse_numeronym(numeronym)
   numeronym_len = get_numeronym_length(numeronym)
-  for i in numeronym:
-    if i == "'":
-      return False
   word_short_list = [word for word in word_list if len(word) == numeronym_len and numeronym[0] == word[0]]
-  print(word_short_list)
-  for i in word_short_list:
-    compare = gen_numeronyms(i, numeronym[1])
-    for i in compare:
-      if numeronym == i:
-        return False
+  parsed_numeronym = parse_numeronym(numeronym)
+  for word in word_list:
+    print "is_valid_numeronym:", [word, numeronym, compare_word_to_numeronym(word, numeronym)]
+    if compare_word_to_numeronym(word, numeronym):
+      return False
   return True
-
-print is_valid_numeronym("k9", listify_word_file("/usr/share/dict/words"))
