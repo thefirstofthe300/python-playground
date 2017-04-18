@@ -9,7 +9,8 @@ class TestBeautifulWord(unittest.TestCase):
       ("abacaba", "Yes"),
       ("abba", "No"),
       ("yes", "No"),
-      ("Hello", "No")
+      ("Hello", "No"),
+      ("Yyes", "No")
     ]
 
     for word in words:
