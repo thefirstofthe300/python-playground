@@ -5,7 +5,7 @@ VOWELS = {vowel: 1 for vowel in "aeiouy"}
 '''Returns yes if the word is beautiful, no if not
 
 A beautiful word is defined as one in which a vowel (a,e,i,o,u,y in this case)
-does not appear next to another vowel and no consonant is repeated.ArithmeticError
+does not appear next to another vowel and no consonant is repeated.
 
 Args:
   word: string to test for beauty
