@@ -1,7 +1,7 @@
-alphabet_str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-alphabet = {i: 1 for i in alphabet_str}
-number_str = "1234567890"
-number = {i: 1 for i in number_str}
+ALPHABET_STR = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ALPHABET = {i: 1 for i in ALPHABET_STR}
+NUMBER_STR = "1234567890"
+NUMBER = {i: 1 for i in NUMBER_STR}
 
 def listify_word_file(filename):
   file_obj = open(filename, 'r').read()
@@ -13,7 +13,7 @@ def parse_numeronym(numeronym):
   offset = 0
 
   for i in range(len(numeronym)):
-    if alphabet.get(numeronym[i]):
+    if ALPHABET.get(numeronym[i]):
       parsed_numeronym.append((numeronym[i], (i + offset)))
     else:
       try:
@@ -27,9 +27,9 @@ def get_numeronym_length(numeronym):
   length = 0
   number_pos = 0
   for x in range(len(numeronym) - 1, -1, -1):
-    if alphabet.get(numeronym[x]) == 1:
+    if ALPHABET.get(numeronym[x]) == 1:
       length += 1
-    elif number.get(numeronym[x]) == 1:
+    elif NUMBER.get(numeronym[x]) == 1:
       length += int(numeronym[x]) * (10 ** number_pos)
       number_pos += 1
   return length
