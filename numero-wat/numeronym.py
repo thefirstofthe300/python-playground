@@ -3,11 +3,6 @@ ALPHABET = {i: 1 for i in ALPHABET_STR}
 NUMBER_STR = "1234567890"
 NUMBER = {i: 1 for i in NUMBER_STR}
 
-def listify_word_file(filename):
-  file_obj = open(filename, 'r').read()
-  word_list = file_obj.split("\n")
-  return word_list
-
 def parse_numeronym(numeronym):
   parsed_numeronym = []
   offset = 0
