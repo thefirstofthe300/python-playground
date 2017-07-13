@@ -1,14 +1,9 @@
-ALPHABET_STR = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-ALPHABET = {i: 1 for i in ALPHABET_STR}
-NUMBER_STR = "1234567890"
-NUMBER = {i: 1 for i in NUMBER_STR}
-
 def parse_numeronym(numeronym):
   parsed_numeronym = []
   offset = 0
 
   for i in range(len(numeronym)):
-    if ALPHABET.get(numeronym[i]):
+    if numeronym[i].isalpha():
       parsed_numeronym.append((numeronym[i], (i + offset)))
     else:
       try:
@@ -22,9 +17,9 @@ def get_numeronym_length(numeronym):
   length = 0
   number_pos = 0
   for x in range(len(numeronym) - 1, -1, -1):
-    if ALPHABET.get(numeronym[x]) == 1:
+    if numeronym[x].isalpha():
       length += 1
-    elif NUMBER.get(numeronym[x]) == 1:
+    elif numeronym[x].isdigit():
       length += int(numeronym[x]) * (10 ** number_pos)
       number_pos += 1
   return length
