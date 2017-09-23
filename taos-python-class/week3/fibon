@@ -1,0 +1,9 @@
+import mymodules.fibo as fibo
+import sys
+
+def main():
+    print "I'm gonna print the fibonacci sequence up to 1000"
+    fibo.fib(1000)
+
+if __name__ == '__main__':
+    main()
