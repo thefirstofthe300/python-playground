@@ -42,7 +42,9 @@ def forward_fibonacci(cap):
 def sum_even(int_array):
     sum = 0
 
-    sum = [i += i for i in int_array if i % 2]
+    for i in int_array:
+        if i % 2:
+            sum += i
     
     return sum
 

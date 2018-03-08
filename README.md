@@ -1,3 +1,3 @@
 # python-playground
 
-Random stuff I was voluntold to write
+Overall, just random stuff I wrote for my own practice
